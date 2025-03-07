@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Honorarios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+            overflow-x: auto;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .note {
+            margin-top: 20px;
+            font-size: 14px;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        .footer a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .totals {
+            list-style: none;
+            padding: 0;
+        }
+        .totals li {
+            margin: 5px 0;
+        }
+        .download-btn {
+            font-size: 16px; /* Tamaño de la fuente */
+            padding: 10px 20px; /* Espaciado interno */
+            background-color: #007bff; /* Color de fondo */
+            color: white; /* Color del texto */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+            margin-left: 20px; /* Espaciado a la izquierda */
+        }
+
+        .download-btn:hover {
+            background-color: #0056b3; /* Color de fondo al pasar el cursor */
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 600px) {
+            .header {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Resumen de Honorarios – 2021-2025</h1>
+        <button class="download-btn" onclick="downloadPDF()">Descargar en PDF</button>
+    </div>
+
+    <p>Estimado Dr.  Echague Guillermo Raul,</p>
+
+    <p>A continuación, se detalla el pago de honorarios realizado por Ramírez Sebastián Alejandro, conforme a lo pactado, por un monto de USD 10.000 (diez mil dólares estadounidenses) en concepto de honorarios. Los valores se encuentran reflejados tanto en pesos argentinos como en dólares oficiales y dólares blue.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha Pago Honorarios</th>
+                <th>Monto en Pesos</th>
+                <th>Cotización Dólar Oficial</th>
+                <th>Monto en Dólar Oficial</th>
+                <th>Cotización Dólar Blue</th>
+                <th>Monto en Dólar Blue</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Miércoles, junio 23, 2021</td>
+                <td>$230.000</td>
+                <td>USD 101,00</td>
+                <td>USD 2.277,23</td>
+                <td>USD 166,00</td>
+                <td>USD 1.385,54</td>
+            </tr>
+            <tr>
+                <td>Martes, julio 06, 2021</td>
+                <td>$40.000</td>
+                <td>USD 101,33</td>
+                <td>USD 394,75</td>
+                <td>USD 171,00</td>
+                <td>USD 233,92</td>
+            </tr>
+            <tr>
+                <td>Lunes, agosto 23, 2021</td>
+                <td>$20.000</td>
+                <td>USD 102,76</td>
+                <td>USD 194,63</td>
+                <td>USD 180,00</td>
+                <td>USD 111,11</td>
+            </tr>
+            <tr>
+                <td>Miércoles, septiembre 08, 2021</td>
+                <td>$30.000</td>
+                <td>USD 103,53</td>
+                <td>USD 289,77</td>
+                <td>USD 187,00</td>
+                <td>USD 160,43</td>
+            </tr>
+            <tr>
+                <td>Miércoles, octubre 06, 2021</td>
+                <td>$40.000</td>
+                <td>USD 104,53</td>
+                <td>USD 382,67</td>
+                <td>USD 185,50</td>
+                <td>USD 215,63</td>
+            </tr>
+            <tr>
+                <td>Martes, noviembre 09, 2021</td>
+                <td>$40.000</td>
+                <td>USD 105,63</td>
+                <td>USD 378,68</td>
+                <td>USD 199,50</td>
+                <td>USD 200,50</td>
+            </tr>
+            <tr>
+                <td>Lunes, diciembre 06, 2021</td>
+                <td>$40.000</td>
+                <td>USD 106,65</td>
+                <td>USD 375,06</td>
+                <td>USD 199,00</td>
+                <td>USD 201,01</td>
+            </tr>
+            <tr>
+                <td>Lunes, enero 10, 2022</td>
+                <td>$40.000</td>
+                <td>USD 108,96</td>
+                <td>USD 367,11</td>
+                <td>USD 206,00</td>
+                <td>USD 194,17</td>
+            </tr>
+            <tr>
+                <td>Martes, febrero 08, 2022</td>
+                <td>$40.000</td>
+                <td>USD 111,49</td>
+                <td>USD 358,78</td>
+                <td>USD 215,00</td>
+                <td>USD 186,05</td>
+            </tr>
+            <tr>
+                <td>Miércoles, marzo 09, 2022</td>
+                <td>$40.000</td>
+                <td>USD 114,37</td>
+                <td>USD 349,74</td>
+                <td>USD 204,50</td>
+                <td>USD 195,60</td>
+            </tr>
+            <tr>
+                <td>Lunes, abril 04, 2022</td>
+                <td>$40.000</td>
+                <td>USD 117,00</td>
+                <td>USD 341,88</td>
+                <td>USD 199,00</td>
+                <td>USD 201,01</td>
+            </tr>
+            <tr>
+                <td>Miércoles, mayo 04, 2022</td>
+                <td>$40.000</td>
+                <td>USD 121,45</td>
+                <td>USD 329,35</td>
+                <td>USD 201,00</td>
+                <td>USD 199,00</td>
+            </tr>
+            <tr>
+                <td>Martes, junio 07, 2022</td>
+                <td>$40.000</td>
+                <td>USD 126,65</td>
+                <td>USD 315,83</td>
+                <td>USD 206,00</td>
+                <td>USD 194,17</td>
+            </tr>
+            <tr>
+                <td>Jueves, julio 07, 2022</td>
+                <td>$40.000</td>
+                <td>USD 123,27</td>
+                <td>USD 324,49</td>
+                <td>USD 257,00</td>
+                <td>USD 155,64</td>
+            </tr>
+            <tr>
+                <td>Lunes, agosto 08, 2022</td>
+                <td>$40.000</td>
+                <td>USD 140,49</td>
+                <td>USD 284,72</td>
+                <td>USD 292,00</td>
+                <td>USD 136,99</td>
+            </tr>
+            <tr>
+                <td>Jueves, septiembre 08, 2022</td>
+                <td>$40.000</td>
+                <td>USD 148,15</td>
+                <td>USD 270,00</td>
+                <td>USD 280,00</td>
+                <td>USD 142,86</td>
+            </tr>
+            <tr>
+                <td>Martes, octubre 11, 2022</td>
+                <td>$40.000</td>
+                <td>USD 157,76</td>
+                <td>USD 253,55</td>
+                <td>USD 280,00</td>
+                <td>USD 142,86</td>
+            </tr>
+            <tr>
+                <td>Lunes, noviembre 07, 2022</td>
+                <td>$40.000</td>
+                <td>USD 166,33</td>
+                <td>USD 240,49</td>
+                <td>USD 290,00</td>
+                <td>USD 137,93</td>
+            </tr>
+            <tr>
+                <td>Lunes, diciembre 12, 2022</td>
+                <td>$40.000</td>
+                <td>USD 178,57</td>
+                <td>USD 224,00</td>
+                <td>USD 312,00</td>
+                <td>USD 128,21</td>
+            </tr>
+            <tr>
+                <td>Martes, enero 03, 2023</td>
+                <td>$40.000</td>
+                <td>USD 185,99</td>
+                <td>USD 215,07</td>
+                <td>USD 354,00</td>
+                <td>USD 112,99</td>
+            </tr>
+            <tr>
+                <td>Viernes, febrero 03, 2023</td>
+                <td>$40.000</td>
+                <td>USD 195,40</td>
+                <td>USD 204,71</td>
+                <td>USD 378,00</td>
+                <td>USD 105,82</td>
+            </tr>
+            <tr>
+                <td>Martes, marzo 07, 2023</td>
+                <td>$40.000</td>
+                <td>USD 206,90</td>
+                <td>USD 193,33</td>
+                <td>USD 372,00</td>
+                <td>USD 107,53</td>
+            </tr>
+            <tr>
+                <td>Miércoles, abril 05, 2023</td>
+                <td>$40.000</td>
+                <td>USD 218,77</td>
+                <td>USD 182,84</td>
+                <td>USD 392,00</td>
+                <td>USD 102,04</td>
+            </tr>
+            <tr>
+                <td>Lunes, mayo 08, 2023</td>
+                <td>$40.000</td>
+                <td>USD 238,18</td>
+                <td>USD 167,94</td>
+                <td>USD 469,00</td>
+                <td>USD 85,29</td>
+            </tr>
+            <tr>
+                <td>Lunes, junio 05, 2023</td>
+                <td>$100.000</td>
+                <td>USD 253,83</td>
+                <td>USD 393,96</td>
+                <td>USD 488,00</td>
+                <td>USD 204,92</td>
+            </tr>
+            <tr>
+                <td>Lunes, julio 10, 2023</td>
+                <td>$100.000</td>
+                <td>USD 275,81</td>
+                <td>USD 362,57</td>
+                <td>USD 495,00</td>
+                <td>USD 202,02</td>
+            </tr>
+            <tr>
+                <td>Lunes, agosto 07, 2023</td>
+                <td>$100.000</td>
+                <td>USD 295,25</td>
+                <td>USD 338,70</td>
+                <td>USD 596,00</td>
+                <td>USD 167,79</td>
+            </tr>
+            <tr>
+                <td>Lunes, septiembre 11, 2023</td>
+                <td>$100.000</td>
+                <td>USD 367,00</td>
+                <td>USD 272,48</td>
+                <td>USD 717,00</td>
+                <td>USD 139,47</td>
+            </tr>
+            <tr>
+                <td>Jueves, octubre 05, 2023</td>
+                <td>$100.000</td>
+                <td>USD 347,00</td>
+                <td>USD 288,18</td>
+                <td>USD 843,00</td>
+                <td>USD 118,62</td>
+            </tr>
+            <tr>
+                <td>Martes, noviembre 07, 2023</td>
+                <td>$100.000</td>
+                <td>USD 368,05</td>
+                <td>USD 271,70</td>
+                <td>USD 890,00</td>
+                <td>USD 112,36</td>
+            </tr>
+            <tr>
+                <td>Martes, diciembre 12, 2023</td>
+                <td>$100.000</td>
+                <td>USD 589,00</td>
+                <td>USD 169,78</td>
+                <td>USD 1.070,00</td>
+                <td>USD 93,46</td>
+            </tr>
+            <tr>
+                <td>Jueves, enero 11, 2024</td>
+                <td>$100.000</td>
+                <td>USD 860,00</td>
+                <td>USD 116,28</td>
+                <td>USD 1.120,00</td>
+                <td>USD 89,29</td>
+            </tr>
+            <tr>
+                <td>Miércoles, febrero 14, 2024</td>
+                <td>$100.000</td>
+                <td>USD 881,00</td>
+                <td>USD 113,51</td>
+                <td>USD 1.120,00</td>
+                <td>USD 89,29</td>
+            </tr>
+            <tr>
+                <td>Lunes, marzo 18, 2024</td>
+                <td>$100.000</td>
+                <td>USD 897,00</td>
+                <td>USD 111,48</td>
+                <td>USD 1.015,00</td>
+                <td>USD 98,52</td>
+            </tr>
+            <tr>
+                <td>Jueves, abril 11, 2024</td>
+                <td>$100.000</td>
+                <td>USD 911,00</td>
+                <td>USD 109,77</td>
+                <td>USD 1.000,00</td>
+                <td>USD 100,00</td>
+            </tr>
+            <tr>
+                <td>Martes, mayo 28, 2024</td>
+                <td>$100.000</td>
+                <td>USD 935,00</td>
+                <td>USD 106,95</td>
+                <td>USD 1.210,00</td>
+                <td>USD 82,64</td>
+            </tr>
+            <tr>
+                <td>Martes, junio 18, 2024</td>
+                <td>$100.000</td>
+                <td>USD 945,00</td>
+                <td>USD 105,82</td>
+                <td>USD 1.305,00</td>
+                <td>USD 76,63</td>
+            </tr>
+            <tr>
+                <td>Viernes, julio 12, 2024</td>
+                <td>$100.000</td>
+                <td>USD 960,00</td>
+                <td>USD 104,17</td>
+                <td>USD 1.500,00</td>
+                <td>USD 66,67</td>
+            </tr>
+            <tr>
+                <td>Martes, agosto 20, 2024</td>
+                <td>$100.000</td>
+                <td>USD 983,00</td>
+                <td>USD 101,73</td>
+                <td>USD 1.355,00</td>
+                <td>USD 73,80</td>
+            </tr>
+            <tr>
+                <td>Lunes, octubre 28, 2024</td>
+                <td>$200.000</td>
+                <td>USD 1.017,00</td>
+                <td>USD 196,66</td>
+                <td>USD 1.220,00</td>
+                <td>USD 163,93</td>
+            </tr>
+            <tr>
+                <td>Lunes, noviembre 11, 2024</td>
+                <td>$300.000</td>
+                <td>USD 1.027,00</td>
+                <td>USD 292,11</td>
+                <td>USD 1.135,00</td>
+                <td>USD 264,32</td>
+            </tr>
+            <tr>
+                <td>Lunes, noviembre 25, 2024</td>
+                <td>$500.000</td>
+                <td>USD 1.037,00</td>
+                <td>USD 482,16</td>
+                <td>USD 1.230,00</td>
+                <td>USD 406,50</td>
+            </tr>
+            <tr>
+                <td>Lunes, diciembre 09, 2024</td>
+                <td>$500.000</td>
+                <td>USD 1.046,00</td>
+                <td>USD 478,01</td>
+                <td>USD 1.050,00</td>
+                <td>USD 476,19</td>
+            </tr>
+            <tr>
+                <td>Martes, enero 07, 2025</td>
+                <td>$500.000</td>
+                <td>USD 1.068,00</td>
+                <td>USD 468,16</td>
+                <td>USD 1.205,00</td>
+                <td>USD 414,94</td>
+            </tr>
+            <tr>
+                <td>Martes, febrero 04, 2025</td>
+                <td>$500.000</td>
+                <td>USD 1.082,00</td>
+                <td>USD 462,11</td>
+                <td>USD 1.218,00</td>
+                <td>USD 410,51</td>
+            </tr>
+            <tr>
+                <td>Jueves, marzo 06, 2025</td>
+                <td>$500.000</td>
+                <td>USD 1.091,00</td>
+                <td>USD 458,30</td>
+                <td>USD 1.020,00</td>
+                <td>USD 490,20</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p><strong>Totales:</strong></p>
+    <ul class="totals">
+        <li><strong>Total Pesos:</strong> $5.620.000</li>
+        <li><strong>Total Dólar Oficial:</strong> USD 14.721,19</li>
+        <li><strong>Total Dólar Blue:</strong> USD 9.378,35</li>
+    </ul>
+
+    <div class="note">
+        <p><strong>Nota Importante:</strong></p>
+        <p>La cotización del dólar oficial puede consultarse en el siguiente <a href="https://www.ambito.com/contenidos/dolar-oficial-historico.html" target="_blank">enlace</a>.</p>
+        <p>La cotización del dólar blue puede consultarse en el siguiente <a href="https://www.ambito.com/contenidos/dolar-informal-historico.html" target="_blank">enlace</a>.</p>
+    </div>
+
+    <div class="footer">
+        <p>Si tienes alguna consulta adicional, no dudes en contactarme.</p>
+        <p>Saludos cordiales,</p><br>Ramírez Sebastián Alejandro<br>
+    </div>
+
+    <script>
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.text("Resumen de Honorarios – 2021-2025\n", 50, 10);
+            doc.text("\n pago de honorarios realizado por Ramírez Sebastián Alejandro.\n", 12, 10);
+            
+            // Obtener la tabla HTML
+            const table = document.querySelector("table");
+            
+            // Usar autoTable para agregar la tabla al PDF
+            doc.autoTable({
+                html: table,
+                startY: 20,
+                theme: 'grid',
+                headStyles: { fillColor: [22, 160, 133] },
+                styles: { fontSize: 8 }
+            });
+
+            // Agregar totales al final de la tabla
+            const totalPesos = "$5.620.000";
+            const totalDolarOficial = "USD 14.721,19";
+            const totalDolarBlue = "USD 9.378,35";
+
+            doc.autoTable({
+                body: [
+                    ["Totales", totalPesos, "", totalDolarOficial, "", totalDolarBlue]
+                ],
+                startY: doc.lastAutoTable.finalY + 10,
+                theme: 'grid',
+                headStyles: { fillColor: [22, 160, 133] },
+                styles: { fontSize: 8 }
+            });
+
+            // Generar el PDF como Blob
+            const pdfBlob = doc.output('blob');
+
+            // Crear un enlace para descargar el PDF
+            const url = URL.createObjectURL(pdfBlob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'resumen_honorarios.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
+</body>
+</html>
